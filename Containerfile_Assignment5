@@ -2,7 +2,7 @@
 FROM fedora:latest
 
 # upgrade the system, install httpd tool, and remove tuxpaint and vim
-RUN dnf -y upgrade && dnf -y install httpd && clean all
+RUN dnf -y upgrade && dnf -y install httpd
 
 # copy the 'data' folder in assignment4 to '/var/www/html/data'
 COPY data /var/www/html/data
