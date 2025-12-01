@@ -1,0 +1,16 @@
+# using image fedora:latest
+FROM fedora:latest
+
+# upgrade the system, install httpd tool, and remove tuxpaint and vim
+RUN dnf -y upgrade && dnf -y install httpd && clean all
+
+# copy the 'data' folder in assignment4 to '/var/www/html/data'
+COPY data /var/www/html/data
+
+# using port 80 to allow external access
+EXPOSE 80
+
+# httpd run
+CMD ["httpd", "-D", "FOREGROUND"]
+
+
