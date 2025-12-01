@@ -1,0 +1,25 @@
+# base image
+# using image fedora:latest
+FROM fedora:latest as setup
+
+# upgrade the system and install httpd tools
+RUN dnf -y upgrade && dnf -y install httpd
+
+# using port 80 to allow external access
+EXPOSE 80
+
+# entrypoint
+CMD ["httpd", "-D", "FOREGROUND"]
+
+# first image - website 1
+FROM setup as site1
+LABEL website=1
+COPY website1.html /var/www/html/
+
+# second image - website 2
+FROM setup as site2
+LABEL website=2
+COPY website2.html /var/www/html/
+
+
+
